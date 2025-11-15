@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr Decoration</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Cairo', sans-serif;
+            background: #050505;
+        }
+
+        /* خلفية الجزيئات */
+        #particles-js {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: #050505 !important;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+        }
+
+        #particles-js canvas {
+            filter: blur(2px);
+        }
+
+
+
+        /* شبكة الصور */
+        #menu-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(auto, 1fr));
+            gap: 20px;
+            padding: 30px;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        /* تصميم الصورة */
+        .image-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 14px;
+            cursor: pointer;
+            transform: scale(0.95);
+            opacity: 0;
+            animation: fadeIn 0.9s ease forwards;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        /* الأنيميشن العام عند الظهور */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(25px) scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* الصورة نفسها */
+        .image-card img {
+            width: 100%;
+            height: 100%;
+            transition: transform .4s ease;
+        }
+
+        /* تكبير الصورة عند المرور */
+        .image-card:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Overlay تأثير أسود خفيف */
+        .image-card::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.18);
+            opacity: 0;
+            transition: 0.3s ease;
+        }
+
+        .image-card:hover::after {
+            opacity: 1;
+        }
+
+        /* نص يظهر عند الهوفر */
+        .hover-text {
+            position: absolute;
+            bottom: 10px;
+            left: 15px;
+            color: #fff;
+            font-size: 18px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 0.35s ease;
+        }
+
+        .image-card:hover .hover-text {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        footer {
+            background-color: #111;
+            color: #fff;
+            padding: 20px 10px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            /* يخلي النص في الوسط */
+        }
+
+        .footer-center p {
+            margin: 0;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        /* إضافة تأثير Hover خفيف (اختياري) */
+        .footer-center p:hover {
+            color: #fff;
+            transition: 0.3s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="particles-js"></div>
+
+
+
+    <div id="menu-gallery"></div>
+
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="main.js"></script>
+
+    <script>
+
+
+
+
+        /* هنا تحط لينكات الصور */
+        const imageLinks = [
+            "https://res.cloudinary.com/dwhkjr77b/image/upload/v1763186898/14-print-4160-Locust-Ave_11-scaled_xazvo5.jpg",
+            ,
+            ,
+
+        ];
+
+        const gallery = document.getElementById("menu-gallery");
+
+        imageLinks.forEach((link, index) => {
+            const card = document.createElement("div");
+            card.className = "image-card";
+
+            const img = document.createElement("img");
+            img.src = link;
+            img.alt = "Image";
+
+            const text = document.createElement("div");
+            text.className = "hover-text";
+            text.innerText = "";
+
+            card.style.animationDelay = `${index * 0.15}s`;
+
+            card.appendChild(img);
+            card.appendChild(text);
+            gallery.appendChild(card);
+        });
+
+
+
+    </script>
+
+    <footer>
+        <div class="footer-center">
+            <p>© 2025 جميع الحقوق محفوظة. اسم الموقع</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
